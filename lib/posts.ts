@@ -25,12 +25,12 @@ export function getSortedPostsData() {
         // Combina os dados com o id
         return {
             id,
-            ...matterResult.data,
+            ...(matterResult.data as { date: string; title: string }),
         };
     });
     // Ordena as postagems por data
-    return allPostsData.sort(({ date: a }, { date: b }) => {
-        if (a < b) {
+    return allPostsData.sort((a,b) => {
+        if (a.date < b.date) {
             return 1;
         } else if (a > b) {
             return -1;
